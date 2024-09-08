@@ -1,2 +1,5 @@
-# Spotify-Demo
-This is a Spotify Demo.
+<<<<<<< HEAD
+Your changes from the current branch (master)
+=======
+Changes from the other branch (main)
+>>>>>>> main
