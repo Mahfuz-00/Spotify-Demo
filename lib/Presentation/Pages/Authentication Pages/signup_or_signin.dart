@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_demo/Common/Helpers/is_dark.dart';
 import 'package:spotify_demo/Common/Widgets/Buttons/basic_app_button.dart';
 import 'package:spotify_demo/Core/Configurations/Assets/App_Vectors.dart';
+import 'package:spotify_demo/Presentation/Pages/Authentication%20Pages/signin.dart';
 import 'package:spotify_demo/Presentation/Pages/Authentication%20Pages/signup.dart';
 
 import '../../../Common/Widgets/Appbar/appbar.dart';
@@ -76,7 +77,7 @@ class SignupOrSignIn extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (BuildContext context) => const SignUp()));
+                                      builder: (BuildContext context) => SignUp()));
                             },
                             title: 'Register',
                           )),
@@ -86,7 +87,12 @@ class SignupOrSignIn extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) => SignIn()));
+                          },
                           child: Text(
                             'Sign in',
                             textAlign: TextAlign.center,

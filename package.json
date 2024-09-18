@@ -1,0 +1,26 @@
+{
+  "name": "spotify_demo",
+  "version": "1.0.0",
+  "description": "This is a Pet Practice Project",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "Hello"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahfuz-00/Spotify-Demo.git"
+  },
+  "keywords": [
+    "sayem960"
+  ],
+  "author": "Md. Abdullah al Mahfuz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahfuz-00/Spotify-Demo/issues"
+  },
+  "homepage": "https://github.com/Mahfuz-00/Spotify-Demo#readme"
+}

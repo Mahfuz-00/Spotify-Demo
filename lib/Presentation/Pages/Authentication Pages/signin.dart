@@ -1,49 +1,80 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_demo/Common/Widgets/Buttons/basic_app_button.dart';
+import 'package:spotify_demo/Data/Models/Auth/signin_user_req.dart';
+import 'package:spotify_demo/Domain/Usecases/Auth/signin.dart';
 import 'package:spotify_demo/Presentation/Pages/Authentication%20Pages/signup.dart';
+import 'package:spotify_demo/Presentation/Pages/Dashboard/dashboard.dart';
+import 'package:spotify_demo/service_locator.dart';
 
 import '../../../Common/Widgets/Appbar/appbar.dart';
 import '../../../Core/Configurations/Assets/App_Vectors.dart';
 
 class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+  SignIn({super.key});
+
+  final TextEditingController _email_controller = new TextEditingController();
+  final TextEditingController _password_controller = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       appBar: Appbar(
         title: SvgPicture.asset(
           AppVectors.Logo,
           height: 40,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 90),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const RegisterText(),
-            const SizedBox(
-              height: 40,
-            ),
-            TextField(
-              decoration: const InputDecoration(hintText: 'Enter Username or Email')
-                  .applyDefaults(Theme.of(context).inputDecorationTheme),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            TextField(
-              decoration: const InputDecoration(hintText: 'Password')
-                  .applyDefaults(Theme.of(context).inputDecorationTheme),
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            AppButtons(onPressed: () {}, title: 'Sign In'),
-            //Spacer(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 90),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const RegisterText(),
+              const SizedBox(
+                height: 40,
+              ),
+              TextField(
+                controller: _email_controller,
+                decoration:
+                    const InputDecoration(hintText: 'Enter Username or Email')
+                        .applyDefaults(Theme.of(context).inputDecorationTheme),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextField(
+                controller: _password_controller,
+                decoration: const InputDecoration(hintText: 'Password')
+                    .applyDefaults(Theme.of(context).inputDecorationTheme),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              AppButtons(
+                  onPressed: () async {
+                    var result = await serviceLocator<SignInUseCase>().call(
+                        params: SignInUserReq(
+                            email: _email_controller.text.toString(),
+                            password: _password_controller.text.toString()));
+                    result.fold((l) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(l)));
+                    }, (r) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => const Dashboard()),
+                        (route) => false,
+                      );
+                    });
+                  },
+                  title: 'Sign In'),
+              //Spacer(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -57,10 +88,10 @@ class SignIn extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => const SignUp()));
+                        builder: (BuildContext context) => SignUp()));
               },
               child: const Text('Register Now',
                   style: TextStyle(
