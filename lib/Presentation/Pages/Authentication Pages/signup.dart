@@ -4,7 +4,7 @@ import 'package:spotify_demo/Common/Widgets/Buttons/basic_app_button.dart';
 import 'package:spotify_demo/Data/Models/Auth/create_user_req.dart';
 import 'package:spotify_demo/Domain/Usecases/Auth/signup.dart';
 import 'package:spotify_demo/Presentation/Pages/Authentication%20Pages/signin.dart';
-import 'package:spotify_demo/Presentation/Pages/Dashboard/dashboard.dart';
+import 'package:spotify_demo/Presentation/Pages/Home/home.dart';
 import 'package:spotify_demo/service_locator.dart';
 
 import '../../../Common/Widgets/Appbar/appbar.dart';
@@ -77,7 +77,7 @@ class SignUp extends StatelessWidget {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => const Dashboard()),
+                            builder: (BuildContext context) => const HomePage()),
                         (route) => false,
                       );
                     });

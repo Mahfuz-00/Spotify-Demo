@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:spotify_demo/Presentation/Bloc/theme_cubit.dart';
+import 'package:spotify_demo/Presentation/Bloc/Choose%20Mode/theme_cubit.dart';
 import 'package:spotify_demo/Presentation/Pages/Authentication%20Pages/signup_or_signin.dart';
 
 import '../../../Common/Widgets/Buttons/basic_app_button.dart';

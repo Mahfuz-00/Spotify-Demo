@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:spotify_demo/Presentation/Bloc/theme_cubit.dart';
 import 'package:spotify_demo/firebase_options.dart';
 import 'package:spotify_demo/service_locator.dart';
 
 import 'Core/Configurations/Themes/app_themes.dart';
+import 'Presentation/Bloc/Choose Mode/theme_cubit.dart';
+import 'Presentation/Bloc/Home/new_song_cubit.dart';
 import 'Presentation/Pages/Splashscreen Page/splashscreen.dart';
 
 Future<void> main() async {
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => ThemeCubit())
+        BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => NewSongCubit())
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, mode) => MaterialApp(
